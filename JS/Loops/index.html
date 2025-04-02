@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+
+<body>
+      <script>
+            const inventory = [
+                  { id: 101, name: "Laptop", price: 1200, stock: 15, category: "Electronics" },
+                  { id: 102, name: "Telefon", price: 800, stock: 25, category: "Electronics" },
+                  { id: 103, name: "Stol", price: 250, stock: 8, category: "Furniture" },
+                  { id: 104, name: "Stul", price: 120, stock: 28, category: "Furniture" },
+                  { id: 105, name: "Qulaqlıq", price: 150, stock: 30, category: "Electronics" },
+                  { id: 106, name: "Lampa", price: 75, stock: 12, category: "Home" }
+            ];
+
+            // 1. Hər kateqoriya üzrə məhsulların ümumi dəyərini hesablayın
+            const totalValueByCategory = {};
+            for (let i = 0; i < inventory.length; i++) {
+                  let item = inventory[i];
+                  if (!totalValueByCategory[item.category]) {
+                        totalValueByCategory[item.category] = 0;
+                  }
+                  totalValueByCategory[item.category] += item.price * item.stock;
+            }
+            console.log("Ümumi dəyər:", totalValueByCategory);
+
+            // 2. Stok miqdarı 10-dan az olan məhsulları siyahıya alın
+            const lowStockProducts = [];
+            for (let i = 0; i < inventory.length; i++) {
+                  if (inventory[i].stock < 10) {
+                        lowStockProducts.push(inventory[i]);
+                  }
+            }
+            console.log("Stok miqdarı 10-dan az olan məhsullar:", lowStockProducts);
+
+            // 3. Məhsulları qiymətə görə artan sıra ilə düzün
+            const sortedByPriceAsc = [...inventory].sort((a, b) => a.price - b.price);
+            console.log("Qiymətə görə artan:", sortedByPriceAsc);
+
+            // 4. Məhsulları qiymətə görə azalan sıra ilə düzün
+            const sortedByPriceDesc = [...inventory].sort((a, b) => b.price - a.price);
+            console.log("Qiymətə görə azalan:", sortedByPriceDesc);
+
+            // 5. Hər bir kateqoriyada neçə məhsul olduğunu hesablayın
+            const countByCategory = {};
+            for (let i = 0; i < inventory.length; i++) {
+                  let item = inventory[i];
+                  if (!countByCategory[item.category]) {
+                        countByCategory[item.category] = 0;
+                  }
+                  countByCategory[item.category]++;
+            }
+            console.log("Hər kateqoriyada məhsul sayı:", countByCategory);
+      </script>
+</body>
+
+</html>
