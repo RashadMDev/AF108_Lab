@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+
+<body>
+      <button class="btn">Delete</button>
+      <script>
+            const BASE_URL = "http://localhost:3000/products"
+            //POST
+            async function addProd(prod) {
+                  try {
+                        const res = await fetch(BASE_URL, {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify(prod)
+                        })
+                        const data = await res.json()
+                        console.log(data, "Gonderildi");
+
+                  } catch (error) {
+                        console.log(error, "Error");
+
+                  }
+            }
+
+            //PUT
+
+            async function editProd(editedProd, id) {
+                  try {
+                        const res = await fetch(`${BASE_URL}/${id}`, {
+                              method: "PUT",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify(editedProd)
+                        })
+                        const data = await res.json()
+                        console.log(data, "Update");
+
+                  } catch (error) {
+                        console.log(error, "Error");
+
+                  }
+            }
+
+            //DELETE
+            const deleteBtn = document.querySelector(".btn")
+            deleteBtn.addEventListener("click", deleteProd(3))
+            async function deleteProd(id) {
+                  try {
+                        const res = await fetch(`${BASE_URL}/${id}`, {
+                              method: "DELETE"
+                        })
+                        const data = await res.json()
+                        console.log(data, "Silindi");
+                  } catch (error) {
+                        console.log(error, "Error");
+                  }
+            }
+
+      </script>
+</body>
+
+</html>
